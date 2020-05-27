@@ -1,0 +1,41 @@
+SW-TI
+
+
+enable
+conf t
+hostname SW-TI
+enable secret SenhadaEnable
+banner motd "ACESSO APENAS PARA PESSOAS AUTORIZADAS!"
+username lucasjorge privilege 15 secret batata-s2
+ip domain-name  empresa.local
+crypto key generate rsa general-key modulus 1024
+line vty 0 15
+transport input ssh
+login local
+exit
+line console 0
+login local
+exit
+service password-encryption
+vlan 10
+name RH
+vlan 20
+name ADM
+vlan 30
+name GER
+vlan 40
+name TI
+interface range  fa0/1-2
+switchport mode access
+switchport access vlan 40
+interface g0/2
+switchport mode trunk 
+switch trunk native vlan 99
+switchport trunk allowed vlan 10,20,30,40,99
+interface vlan 40
+ip address 192.168.0.77 255.255.255.240
+interface range fa0/3-24
+shutdown
+int g0/1
+shutdown
+do wr 
