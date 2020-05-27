@@ -2,6 +2,6 @@
 
  
 
-![](./vlanger.PNG)
+![](./vlanger.png)
 
 Mensagem: Topologia utilizando a vlan de gerenciamneto
